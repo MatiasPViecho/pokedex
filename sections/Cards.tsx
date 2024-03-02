@@ -18,9 +18,12 @@ export const Cards = () => {
 
   return (
     <section>
-      <ul>
+      <ul className="flex gap-4 snap-mandatory snap-x">
         {cards.map((card) => (
-          <li key={card.id}>
+          <li
+            key={card.id}
+            className="snap-center"
+          >
             <Card
               sprite={card.sprite}
               stats={card.stats}

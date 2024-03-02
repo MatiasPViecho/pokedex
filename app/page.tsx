@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="my-48 mx-auto px-8 sm:max-md:px-16 md:max-lg:px-40 lg:px-[500px]">
       <Cards />
     </main>
   );
