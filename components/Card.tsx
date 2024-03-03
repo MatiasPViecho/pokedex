@@ -1,6 +1,7 @@
 import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
 import { Icon } from './Icons';
+import { IconType } from './IconType';
 
 const Card = ({
   id,
@@ -12,7 +13,7 @@ const Card = ({
   height,
   weight,
 }: IFinalPokemon) => {
-  const colours: string[] = [
+  const types: string[] = [
     'normal',
     'fire',
     'water',
@@ -35,7 +36,7 @@ const Card = ({
   return (
     <div
       className={`p-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg ${
-        colours.includes(type)
+        types.includes(type)
           ? `${
               second_type
                 ? `bg-gradient-to-br from-${type}-opaque from-50% to-${second_type}-opaque to-70%`
@@ -56,20 +57,7 @@ const Card = ({
           <div
             className={`p-2 w-max bg-${type} rounded-full flex justify-center items-center`}
           >
-            <svg
-              fill="none"
-              height="24"
-              width="24"
-              viewBox="0 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clip-rule="evenodd"
-                d="m97.4121 440.649c-1.7574-1.653-3.4954-3.338-5.2132-5.056-90.68455-90.684-90.68453-237.713 0-328.397 90.6841-90.6849 379.6401-96.7516 379.6401-96.7516s39.442 334.4646-51.242 425.1486c-80.54 80.54-205.522 89.55-296.005 27.031l72.908-89.471 116.55-25.163-95.139-9.511 60.462-61.562 68.824-15.077-54.422-16.117 54.422-98.176-77.41 86.828-29.893-42.183 10.523 69.648-53.917 60.782-24.993-76.9v102.268z"
-                fill="#fff"
-                fill-rule="evenodd"
-              />
-            </svg>
+            {types.includes(type) ? <IconType name={type} /> : <></>}
           </div>
         </div>
       </div>
@@ -77,7 +65,7 @@ const Card = ({
         <div
           className={`flex w-full justify-center p-4
          ${
-           colours.includes(type) ? `bg-${type}` : 'bg-white'
+           types.includes(type) ? `bg-${type}` : 'bg-white'
          } rounded-md relative overflow-hidden border-4 my-1 border-gray-200/30`}
         >
           <img
