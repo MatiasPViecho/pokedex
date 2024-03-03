@@ -5,33 +5,40 @@ const Error = (msg: string, code: number): IError => {
   return { message: msg, code: code, ok: false };
 };
 
-export const getPokemons = async () => {
+export const getPokemons = async (gen: number) => {
   try {
-    const res = await fetch(`${API_URL}/pokemon?offset=0&limit=151`, {
+    const res = await fetch(`${API_URL}/pokedex/${gen + 1}`, {
       cache: 'force-cache',
     });
+
     const json = await res.json();
     const finalPokemonArray: IFinalPokemon[] = [];
-    if (json.results) {
-      json.results.forEach(async (element: IPokemonGroup) => {
-        const resPokemon = await fetch(element.url, { cache: 'force-cache' });
-        const jsonPokemon = await resPokemon.json();
-        if (jsonPokemon) {
-          const finalPokemon: IFinalPokemon = convertToPokemon(jsonPokemon);
-          finalPokemonArray.push(finalPokemon);
+    if (json.pokemon_entries) {
+      const pokemonPromises = json.pokemon_entries.map(
+        async (element: IPokemonGroup) => {
+          const newUrl = element.pokemon_species.url.replace('-species', '');
+          const jsonPokemon = await getPokemon(newUrl);
+          if (jsonPokemon) {
+            return convertToPokemon(jsonPokemon);
+          }
         }
+      );
+      await Promise.all(pokemonPromises).then((pokemonArray) => {
+        finalPokemonArray.push(...pokemonArray.filter((pokemon) => pokemon));
       });
+      return finalPokemonArray;
     }
-    return finalPokemonArray;
+    return Error('Bad fetch', 400);
   } catch (e) {
     console.error(e);
     return Error('An error ocurred', 500);
   }
 };
 
-export const getPokemon = async (id: number) => {
-  const res = await fetch(`${API_URL}/pokemon/${id}`, { cache: 'force-cache' });
+export const getPokemon = async (url: string) => {
+  const res = await fetch(url, { cache: 'force-cache' });
   const json = await res.json();
+  return json;
 };
 
 function convertToPokemon(jsonPokemon: any) {
@@ -48,6 +55,7 @@ function convertToPokemon(jsonPokemon: any) {
       speed: 0,
     },
     type: '',
+    second_type: null,
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
@@ -59,5 +67,7 @@ function convertToPokemon(jsonPokemon: any) {
   finalPokemon.stats.speed = jsonPokemon.stats[5]?.base_stat || 0;
   finalPokemon.id = jsonPokemon.id;
   finalPokemon.type = jsonPokemon.types[0].type.name;
+  finalPokemon.second_type =
+    jsonPokemon.types.length > 1 ? jsonPokemon.types[1].type.name : null;
   return finalPokemon;
 }

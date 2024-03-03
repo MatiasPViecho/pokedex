@@ -92,6 +92,14 @@ const config: Config = {
       pattern:
         /bg-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)-opaque/,
     },
+    {
+      pattern:
+        /from-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)/,
+    },
+    {
+      pattern:
+        /to-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)/,
+    },
   ],
   plugins: [],
 };

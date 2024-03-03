@@ -2,16 +2,9 @@
 import { ReactElement, useRef, useState, MouseEvent } from 'react';
 interface DraggableProps {
   rootClass: string | undefined | null;
-  handleStartGrabbing: Function;
-  handleStopGrabbing: Function;
   children: ReactElement;
 }
-export const Draggable = ({
-  rootClass = '',
-  children,
-  handleStartGrabbing,
-  handleStopGrabbing,
-}: DraggableProps) => {
+export const Draggable = ({ rootClass = '', children }: DraggableProps) => {
   const ourRef = useRef<HTMLDivElement>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const mouseCoords = useRef({
@@ -26,12 +19,10 @@ export const Draggable = ({
     const scrollLeft = slider.scrollLeft;
     mouseCoords.current = { startX, scrollLeft };
     setIsMouseDown(true);
-    handleStartGrabbing();
   };
   const handleDragEnd = (e: MouseEvent) => {
     setIsMouseDown(false);
     if (!ourRef.current) return;
-    handleStopGrabbing();
   };
   const handleDrag = (e: MouseEvent) => {
     if (!isMouseDown || !ourRef.current) return;
