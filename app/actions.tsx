@@ -11,29 +11,33 @@ export const getPokemons = async () => {
       cache: 'force-cache',
     });
 
-    console.log('res:', res);
     const json = await res.json();
     const finalPokemonArray: IFinalPokemon[] = [];
     if (json.results) {
-      json.results.forEach(async (element: IPokemonGroup) => {
-        const resPokemon = await fetch(element.url, { cache: 'force-cache' });
-        const jsonPokemon = await resPokemon.json();
-        if (jsonPokemon) {
-          const finalPokemon: IFinalPokemon = convertToPokemon(jsonPokemon);
-          finalPokemonArray.push(finalPokemon);
+      const pokemonPromises = json.results.map(
+        async (element: IPokemonGroup) => {
+          const jsonPokemon = await getPokemon(element.url);
+          if (jsonPokemon) {
+            return convertToPokemon(jsonPokemon);
+          }
         }
+      );
+      await Promise.all(pokemonPromises).then((pokemonArray) => {
+        finalPokemonArray.push(...pokemonArray.filter((pokemon) => pokemon));
       });
+      return finalPokemonArray;
     }
-    return finalPokemonArray;
+    return Error('Bad fetch', 400);
   } catch (e) {
     console.error(e);
     return Error('An error ocurred', 500);
   }
 };
 
-export const getPokemon = async (id: number) => {
-  const res = await fetch(`${API_URL}/pokemon/${id}`, { cache: 'force-cache' });
+export const getPokemon = async (url: string) => {
+  const res = await fetch(url, { cache: 'force-cache' });
   const json = await res.json();
+  return json;
 };
 
 function convertToPokemon(jsonPokemon: any) {
