@@ -1,6 +1,7 @@
+import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
 import { Icon } from './Icons';
-export const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
+const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
   const colours: string[] = [
     'normal',
     'fire',
@@ -26,9 +27,13 @@ export const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
     <div
       className={`p-8 backdrop-blur-xl min-h-[400px] ml-4 min-w-96  rounded-sm ${
         colours.includes(type) ? `bg-${type}` : 'bg-slate-500'
-      } flex flex-col gap-4`}
+      } flex flex-col gap-4 shadow-md`}
     >
-      <div className="flex w-full justify-center p-4 bg-white rounded-md relative overflow-hidden">
+      <div
+        className={`flex w-full justify-center p-4 ${
+          colours.includes(type) ? `bg-${type}-opaque` : 'bg-white'
+        } rounded-md relative overflow-hidden`}
+      >
         <img
           className="w-2/3 h-auto select-none
           "
@@ -69,3 +74,5 @@ export const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
     </div>
   );
 };
+
+export default React.memo(Card);

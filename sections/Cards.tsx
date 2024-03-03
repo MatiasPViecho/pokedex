@@ -1,6 +1,6 @@
 'use client';
 import { getPokemons } from '@/app/actions';
-import { Card } from '@/components/Card';
+import Card from '@/components/Card';
 import { Draggable } from '@/helpers/Draggable';
 import { IFinalPokemon, IError } from '@/interfaces/interfaces';
 import { useState, useEffect } from 'react';
