@@ -13,6 +13,8 @@ export interface IFinalPokemon {
   id: number;
   type: string;
   second_type: string | null;
+  weight: number;
+  height: number;
 }
 
 export interface IPokemonGroup {
