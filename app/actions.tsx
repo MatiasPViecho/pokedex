@@ -10,10 +10,6 @@ export const getPokemons = async () => {
     const res = await fetch(`${API_URL}/pokemon?offset=0&limit=151`, {
       cache: 'force-cache',
     });
-    console.log(
-      '`${API_URL}/pokemon?offset=0&limit=151`:',
-      `${API_URL}/pokemon?offset=0&limit=151`
-    );
     const json = await res.json();
     const finalPokemonArray: IFinalPokemon[] = [];
     if (json.results) {

@@ -22,7 +22,6 @@ const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
     'steel',
     'fairy',
   ];
-  console.log('type:', type);
   return (
     <div
       className={`p-8 backdrop-blur-xl min-h-[400px] ml-4 min-w-96  rounded-sm ${
