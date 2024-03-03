@@ -27,7 +27,7 @@ const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
     <div
       className={`p-8 backdrop-blur-xl min-h-[400px] ml-4 min-w-96  rounded-sm ${
         colours.includes(type) ? `bg-${type}` : 'bg-slate-500'
-      } flex flex-col gap-4 shadow-md`}
+      } flex flex-col gap-4 shadow-md max-md:max-w-96`}
     >
       <div
         className={`flex w-full justify-center p-4 ${
@@ -44,30 +44,34 @@ const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
       </div>
       <div className=" font-mono flex flex-col gap-2 items-center">
         <span className="font-semibold text-lg uppercase">{name}</span>
-        <ul className="grid grid-cols-2 gap-4 *:flex *:justify-between *w-full *:gap-2">
+        <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
           <li>
-            <span>Attack: </span>
-            <span>{stats.attack}</span>
+            {Icon.Sword}
+            <span className="col-start-2">Attack: </span>
+            <span className="col-start-3">{stats.attack}</span>
           </li>
           <li>
-            <span>Defense: </span>
-            <span>{stats.defense}</span>
+            {Icon.Shield}
+            <span className="col-start-2">Defense: </span>
+            <span className="col-start-3">{stats.defense}</span>
           </li>
           <li>
-            <span>HP: </span>
-            <span>{stats.hp}</span>
+            <span className="col-start-2">Sp. Atk: </span>
+            <span className="col-start-3">{stats.specialAttack}</span>
           </li>
           <li>
-            <span>Sp. Atk: </span>
-            <span>{stats.specialAttack}</span>
+            <span className="col-start-2">Sp. Def: </span>
+            <span className="col-start-3">{stats.specialDefense}</span>
           </li>
           <li>
-            <span>Sp. Def: </span>
-            <span>{stats.specialDefense}</span>
+            {Icon.Heart}
+            <span className="col-start-2">HP: </span>
+            <span className="col-start-3">{stats.hp}</span>
           </li>
           <li>
-            <span>Speed: </span>
-            <span>{stats.speed}</span>
+            {Icon.Boot}
+            <span className="col-start-2">Speed: </span>
+            <span className="col-start-3">{stats.speed}</span>
           </li>
         </ul>
       </div>
