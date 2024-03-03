@@ -6,9 +6,10 @@ import { IFinalPokemon, IError } from '@/interfaces/interfaces';
 import { useState, useEffect } from 'react';
 export const Cards = () => {
   const [cards, setCards] = useState<IFinalPokemon[]>([]);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string | null>();
   const [isGrabbing, setIsGrabbing] = useState<boolean>(false);
   useEffect(() => {
+    setError(null);
     getPokemons().then((e: IFinalPokemon[] | IError) => {
       console.log('e:', e);
       if (typeof e == 'undefined') {
