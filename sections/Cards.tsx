@@ -3,7 +3,7 @@ import Card from '@/components/Card';
 import { Draggable } from '@/helpers/Draggable';
 import { IFinalPokemon, IError } from '@/interfaces/interfaces';
 export const Cards = () => {
-  return getPokemons().then((e: IFinalPokemon[] | IError) => (
+  return getPokemons(1).then((e: IFinalPokemon[] | IError) => (
     <Draggable rootClass={''}>
       <ul
         className={`flex p-8 gap-4 *:select-none overflow-x-scroll w-full min-w-[768px]
@@ -22,6 +22,7 @@ export const Cards = () => {
                 name={card.name}
                 id={card.id}
                 type={card.type}
+                second_type={card.second_type}
               />
             </li>
           ))}

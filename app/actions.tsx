@@ -5,18 +5,19 @@ const Error = (msg: string, code: number): IError => {
   return { message: msg, code: code, ok: false };
 };
 
-export const getPokemons = async () => {
+export const getPokemons = async (gen: number) => {
   try {
-    const res = await fetch(`${API_URL}/pokemon?offset=0&limit=151`, {
+    const res = await fetch(`${API_URL}/pokedex/${gen + 1}`, {
       cache: 'force-cache',
     });
 
     const json = await res.json();
     const finalPokemonArray: IFinalPokemon[] = [];
-    if (json.results) {
-      const pokemonPromises = json.results.map(
+    if (json.pokemon_entries) {
+      const pokemonPromises = json.pokemon_entries.map(
         async (element: IPokemonGroup) => {
-          const jsonPokemon = await getPokemon(element.url);
+          const newUrl = element.pokemon_species.url.replace('-species', '');
+          const jsonPokemon = await getPokemon(newUrl);
           if (jsonPokemon) {
             return convertToPokemon(jsonPokemon);
           }
@@ -54,6 +55,7 @@ function convertToPokemon(jsonPokemon: any) {
       speed: 0,
     },
     type: '',
+    second_type: null,
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
@@ -65,5 +67,7 @@ function convertToPokemon(jsonPokemon: any) {
   finalPokemon.stats.speed = jsonPokemon.stats[5]?.base_stat || 0;
   finalPokemon.id = jsonPokemon.id;
   finalPokemon.type = jsonPokemon.types[0].type.name;
+  finalPokemon.second_type =
+    jsonPokemon.types.length > 1 ? jsonPokemon.types[1].type.name : null;
   return finalPokemon;
 }

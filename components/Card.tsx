@@ -1,7 +1,14 @@
 import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
 import { Icon } from './Icons';
-const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
+const Card = ({
+  id,
+  sprite,
+  stats,
+  name,
+  type,
+  second_type,
+}: IFinalPokemon) => {
   const colours: string[] = [
     'normal',
     'fire',
@@ -25,7 +32,13 @@ const Card = ({ id, sprite, stats, name, type }: IFinalPokemon) => {
   return (
     <div
       className={`p-8 backdrop-blur-xl min-h-[400px] ml-4 min-w-96  rounded-sm ${
-        colours.includes(type) ? `bg-${type}` : 'bg-slate-500'
+        colours.includes(type)
+          ? `${
+              second_type
+                ? `bg-gradient-to-br from-${type} from-50% to-${second_type} to-70%`
+                : `bg-${type}`
+            }`
+          : 'bg-slate-500'
       } flex flex-col gap-4 shadow-md max-md:max-w-96`}
     >
       <div

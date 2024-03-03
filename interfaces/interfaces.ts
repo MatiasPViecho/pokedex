@@ -12,11 +12,15 @@ export interface IFinalPokemon {
   stats: IStats;
   id: number;
   type: string;
+  second_type: string | null;
 }
 
 export interface IPokemonGroup {
-  name: string;
-  url: string;
+  entry_number: number;
+  pokemon_species: {
+    name: string;
+    url: string;
+  };
 }
 
 export interface IError {
