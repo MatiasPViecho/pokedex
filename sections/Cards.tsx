@@ -11,6 +11,10 @@ export const Cards = () => {
   useEffect(() => {
     getPokemons().then((e: IFinalPokemon[] | IError) => {
       console.log('e:', e);
+      if (typeof e == 'undefined') {
+        setError('Error general');
+        return;
+      }
       if (!('ok' in e)) {
         setCards(e);
       } else {
