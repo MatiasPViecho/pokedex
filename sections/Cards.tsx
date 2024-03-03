@@ -1,10 +1,15 @@
 'use client';
+const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';
 import { getPokemons } from '@/app/actions';
 import Card from '@/components/Card';
 import { Draggable } from '@/helpers/Draggable';
 import { IFinalPokemon, IError } from '@/interfaces/interfaces';
 import { useState, useEffect } from 'react';
 export const Cards = () => {
+  console.log(
+    '`${API_URL}/pokemon?offset=0&limit=151`:',
+    `${API_URL}/pokemon?offset=0&limit=151`
+  );
   const [cards, setCards] = useState<IFinalPokemon[]>([]);
   const [error, setError] = useState<string | null>();
   const [isGrabbing, setIsGrabbing] = useState<boolean>(false);
