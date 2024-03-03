@@ -10,6 +10,7 @@ export const Cards = () => {
   const [isGrabbing, setIsGrabbing] = useState<boolean>(false);
   useEffect(() => {
     getPokemons().then((e: IFinalPokemon[] | IError) => {
+      console.log('e:', e);
       if (!('ok' in e)) {
         setCards(e);
       } else {
