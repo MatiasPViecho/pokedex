@@ -47,6 +47,7 @@ function convertToPokemon(jsonPokemon: any) {
       specialDefense: 0,
       speed: 0,
     },
+    type: '',
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
@@ -57,5 +58,6 @@ function convertToPokemon(jsonPokemon: any) {
   finalPokemon.stats.specialDefense = jsonPokemon.stats[4]?.base_stat || 0;
   finalPokemon.stats.speed = jsonPokemon.stats[5]?.base_stat || 0;
   finalPokemon.id = jsonPokemon.id;
+  finalPokemon.type = jsonPokemon.types[0].type.name;
   return finalPokemon;
 }

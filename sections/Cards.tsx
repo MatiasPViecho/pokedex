@@ -39,6 +39,7 @@ export const Cards = () => {
               stats={card.stats}
               name={card.name}
               id={card.id}
+              type={card.type}
             />
           </li>
         ))}

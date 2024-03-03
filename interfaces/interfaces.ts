@@ -11,6 +11,7 @@ export interface IFinalPokemon {
   sprite: string;
   stats: IStats;
   id: number;
+  type: string;
 }
 
 export interface IPokemonGroup {
