@@ -4,7 +4,8 @@ const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';
 const Error = (msg: string, code: number): IError => {
   return { message: msg, code: code, ok: false };
 };
-
+const footBase: number = 3.28084;
+const poundsBase: number = 2.20462;
 export const getPokemons = async (gen: number) => {
   try {
     const res = await fetch(`${API_URL}/pokedex/${gen + 1}`, {
@@ -56,6 +57,8 @@ function convertToPokemon(jsonPokemon: any) {
     },
     type: '',
     second_type: null,
+    height: 0,
+    weight: 0,
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
@@ -69,5 +72,22 @@ function convertToPokemon(jsonPokemon: any) {
   finalPokemon.type = jsonPokemon.types[0].type.name;
   finalPokemon.second_type =
     jsonPokemon.types.length > 1 ? jsonPokemon.types[1].type.name : null;
+  finalPokemon.height = convertHeightToFoot(unitConvertUp(jsonPokemon.height));
+  finalPokemon.weight = roundDecimal(
+    convertKgsToLbs(unitConvertUp(jsonPokemon.weight))
+  );
   return finalPokemon;
+}
+
+const unitConvertUp = (unit: number) => {
+  return unit / 10;
+};
+const convertHeightToFoot = (height: number) => {
+  return Math.ceil(height * footBase * 10) / 10; // Round up the last decimal
+};
+const convertKgsToLbs = (kgs: number) => {
+  return kgs * poundsBase;
+};
+function roundDecimal(number: number): number {
+  return parseFloat(number.toFixed(1));
 }

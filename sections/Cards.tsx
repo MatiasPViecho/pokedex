@@ -23,6 +23,8 @@ export const Cards = () => {
                 id={card.id}
                 type={card.type}
                 second_type={card.second_type}
+                weight={card.weight}
+                height={card.height}
               />
             </li>
           ))}
