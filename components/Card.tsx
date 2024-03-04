@@ -36,7 +36,7 @@ const Card = ({
   ];
   return (
     <div
-      className={`px-1 pb-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
+      className={`px-1 pb-8 backdrop-blur-xl min-h-96 ml-4 min-w-80 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
         types.includes(type)
           ? `${
               second_type
@@ -45,11 +45,11 @@ const Card = ({
             }`
           : 'bg-slate-500'
       }
-      border-[12px] border-gray-300 
+      border-[12px] border-stone-700 
       flex flex-col shadow-md max-md:max-w-96`}
     >
       <div
-        className={`w-full font-bold uppercase flex items-end bg-gradient-to-r rounded-tl-full border-gray-200/30 border-x-4 border-y-2 rounded-br-full from-${type} from-60% to-${type}-opaque to-70%  px-2 relative`}
+        className={`w-full font-bold uppercase flex items-end bg-gradient-to-r rounded-tl-full border-gray-700/30 border-x-4 border-y-2 rounded-br-full from-${type} from-60% to-${type}-opaque to-70%  px-2 relative`}
       >
         <span className={`text-lg pl-8 flex-1 h-full pr-2`}>{name}</span>
         <div className={`flex gap-1 items-top pr-2`}>
@@ -67,7 +67,7 @@ const Card = ({
           className={`flex w-full justify-center p-4
          ${
            types.includes(type) ? `bg-${type}` : 'bg-white'
-         } rounded-b-md relative overflow-hidden border-4 border-gray-200/30`}
+         } rounded-b-md relative overflow-hidden border-4 border-gray-700/30`}
         >
           <img
             className="w-2/3 h-auto select-none
@@ -77,7 +77,7 @@ const Card = ({
           />
           <div className="absolute w-full h-full top-0 bg-gradient-to-b  from-holo-green to-holo-pink to-holo-purple to-holo-blue bg-cover animate-holo blur-xl opacity-35 "></div>
         </div>
-        <div className="w-11/12 mx-auto text-sm gap-4 flex justify-center p-1 border-gray-400 bg-gray-300 border-x-4 border-y-2 rounded-full rounded-tr-[3500px] rounded-bl-[3500px] -mt-8 z-50 relative before:absolute before:content-[''] before:h-full before:w-2 before:top-0 before:bg-gray-200/30 before:animate-shine overflow-hidden before:-left-16">
+        <div className="w-11/12 mx-auto text-sm gap-4 flex justify-center p-1 border-gray-800 bg-gray-700 border-x-4 border-y-2 rounded-full rounded-tr-[3500px] rounded-bl-[3500px] -mt-8 z-50 relative before:absolute before:content-[''] before:h-full before:w-2 before:top-0 before:bg-gray-200/30 before:animate-shine overflow-hidden before:-left-16">
           <span>NO. {formatNumber(id)}</span>
           <span>HT: {height}&quot;</span>
           <span>WT: {height} lbs</span>
