@@ -57,19 +57,16 @@ const config: Config = {
         'fairy-opaque': 'rgba(214, 133, 173, 0.65)',
       },
       animation: {
-        decour: 'decour 10s ease-in-out infinite',
+        shine: 'shine 5s ease-in-out infinite',
         holo: 'holo 15s ease-in-out infinite',
       },
       keyframes: {
-        decour: {
-          '0%, 100%': {
-            transform: 'scale(1) rotate(-3deg) translateX(0) translateY(0)',
-            opacity: '1',
+        shine: {
+          '0%': {
+            transform: 'skew(-45deg) translateX(0)',
           },
-          '50%': {
-            transform:
-              'scale(0.75) rotate(3deg) translateX(-10%) translateY(8%)',
-            opacity: '0.5',
+          '100%': {
+            transform: 'skew(-45deg) translateX(1500px)',
           },
         },
         holo: {

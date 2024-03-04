@@ -6,7 +6,7 @@ export const Cards = () => {
   return getPokemons(1).then((e: IFinalPokemon[] | IError) => (
     <Draggable rootClass={''}>
       <ul
-        className={`flex p-8 gap-4 *:select-none overflow-x-scroll w-full min-w-[768px]
+        className={`flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full md:min-w-[768px]
          active:cursor-grabbing  cursor-grab
         `}
       >
