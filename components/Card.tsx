@@ -35,12 +35,12 @@ const Card = ({
   ];
   return (
     <div
-      className={`px-1 pb-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg ${
+      className={`px-1 pb-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
         types.includes(type)
           ? `${
               second_type
-                ? `bg-gradient-to-br from-${type} from-40% via-${type}-opaque via-65% to-${second_type} to-90%`
-                : `bg-${type}-opaque`
+                ? `from-40%  via-${type}-opaque to-${second_type} `
+                : `from-20% via-${type}-opaque to-${type} `
             }`
           : 'bg-slate-500'
       }
