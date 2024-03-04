@@ -31,8 +31,8 @@ export default function RootLayout({
       <body className={`${lato.className} relative overflow-y-hidden`}>
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
-          <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/2 mx-auto">
-            v: 0.3.0 - in development
+          <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/3 mx-auto">
+            v: 0.3.1 - in development
           </span>
         ) : (
           <></>
