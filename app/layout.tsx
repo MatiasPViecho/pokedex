@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const lato = Lato({
+  weight: ['400', '700'],
+  style: 'normal',
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Pokedex',
@@ -24,7 +28,7 @@ export default function RootLayout({
         href="/pokeball.svg"
         sizes="any"
       ></link>
-      <body className="relative overflow-y-hidden">
+      <body className={`${lato.className} relative overflow-y-hidden`}>
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/2 mx-auto">
