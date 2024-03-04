@@ -2,6 +2,7 @@ import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
 import { Icon } from './Icons';
 import { IconType } from './IconType';
+import { formatNumber } from '@/helpers/FormatNumber';
 
 const Card = ({
   id,
@@ -61,12 +62,12 @@ const Card = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col">
         <div
           className={`flex w-full justify-center p-4
          ${
            types.includes(type) ? `bg-${type}` : 'bg-white'
-         } rounded-b-md relative overflow-hidden border-4 mb-1 border-gray-200/30`}
+         } rounded-b-md relative overflow-hidden border-4 border-gray-200/30`}
         >
           <img
             className="w-2/3 h-auto select-none
@@ -74,12 +75,14 @@ const Card = ({
             src={sprite}
             alt={`${name} pokemon sprite`}
           />
-          <div className="absolute w-full h-full top-0 bg-gradient-to-b from-holo-green to-holo-pink to-holo-purple to-holo-blue bg-cover animate-holo blur-xl opacity-35 "></div>
+          <div className="absolute w-full h-full top-0 bg-gradient-to-b  from-holo-green to-holo-pink to-holo-purple to-holo-blue bg-cover animate-holo blur-xl opacity-35 "></div>
         </div>
-        <div className=" flex flex-col gap-2 items-center">
-          <p>
-            {weight} = peso, {height} = altura
-          </p>
+        <div className="w-11/12 mx-auto text-sm gap-4 flex justify-center p-1 border-gray-400 bg-gray-300 border-x-4 border-y-2 rounded-full rounded-tr-[3500px] rounded-bl-[3500px] -mt-8 z-50">
+          <span>NO. {formatNumber(id)}</span>
+          <span>HT: {height}&quot;</span>
+          <span>WT: {height} lbs</span>
+        </div>
+        <div className=" flex flex-col gap-2 items-center mt-4">
           <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
             <li>
               {Icon.Sword}
