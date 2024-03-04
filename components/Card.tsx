@@ -35,11 +35,11 @@ const Card = ({
   ];
   return (
     <div
-      className={`px-8 pb-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg ${
+      className={`px-1 pb-8 backdrop-blur-xl min-h-[500px] ml-4 min-w-96  rounded-lg ${
         types.includes(type)
           ? `${
               second_type
-                ? `bg-gradient-to-br from-${type}-opaque from-50% to-${second_type}-opaque to-70%`
+                ? `bg-gradient-to-br from-${type} from-40% via-${type}-opaque via-65% to-${second_type} to-90%`
                 : `bg-${type}-opaque`
             }`
           : 'bg-slate-500'
@@ -48,10 +48,10 @@ const Card = ({
       flex flex-col shadow-md max-md:max-w-96`}
     >
       <div
-        className={`w-full font-bold uppercase flex items-end bg-gradient-to-r rounded-tl-full rounded-br-[75%] from-${type} from-60% to-${type}-opaque to-70%  px-2 relative`}
+        className={`w-full font-bold uppercase flex items-end bg-gradient-to-r rounded-tl-full border-gray-200/30 border-x-4 border-y-2 rounded-br-full from-${type} from-60% to-${type}-opaque to-70%  px-2 relative`}
       >
         <span className={`text-lg pl-8 flex-1 h-full pr-2`}>{name}</span>
-        <div className={`flex gap-1 items-top `}>
+        <div className={`flex gap-1 items-top pr-2`}>
           <span className="text-xs self-end">hp</span>
           <span className="text-2xl">{stats.hp}</span>
           <div
