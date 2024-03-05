@@ -28,11 +28,13 @@ export default function RootLayout({
         href="/pokeball.svg"
         sizes="any"
       ></link>
-      <body className={`${lato.className} relative overflow-y-hidden`}>
+      <body
+        className={`${lato.className} bg-stone-900 text-white relative overflow-y-hidden`}
+      >
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/3 mx-auto">
-            v: 0.3.1 - in development
+            v: 0.3.2 - in development
           </span>
         ) : (
           <></>

@@ -9,14 +9,22 @@ export interface IStats {
 export interface IFinalPokemon {
   name: string;
   sprite: string;
+  sprite_shiny: string;
   stats: IStats;
   id: number;
   type: string;
   second_type: string | null;
   weight: number;
   height: number;
+  legacy_cry: string | null;
+  flavor_text: IFlavor;
+  base_happiness: number;
 }
 
+export interface IFlavor {
+  es: string;
+  en: string;
+}
 export interface IPokemonGroup {
   entry_number: number;
   pokemon_species: {
