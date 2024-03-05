@@ -39,7 +39,7 @@ const Card = ({
   ];
   return (
     <div
-      className={`pb-8 backdrop-blur-xl min-h-96 min-w-80 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
+      className={`box-border backdrop-blur-xl min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-80 sm:max-h-80 sm:max-w-72 sm:min-w-72 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
         types.includes(type)
           ? `${
               second_type
@@ -76,9 +76,9 @@ const Card = ({
         <span>WT: {weight} lbs</span>
       </div>
       <div
-        className={`px-2 w-full pt-4  bg-gradient-to-br from-white/30 from-0% via-white/25 via-10% to-transparent h-full to-40%  `}
+        className={`px-1 w-full pt-4  bg-gradient-to-br from-white/30 from-0% via-white/25 via-10% to-transparent h-full to-40%  `}
       >
-        <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem]">
+        <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:whitespace-normal sm:line-clamp-2">
           {flavor_text.es || flavor_text.en}
         </span>
 
