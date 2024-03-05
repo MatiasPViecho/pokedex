@@ -59,9 +59,12 @@ function convertToPokemon(jsonPokemon: any) {
     second_type: null,
     height: 0,
     weight: 0,
+    sprite_shiny: '',
+    legacy_cry: null,
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
+  finalPokemon.sprite_shiny = jsonPokemon.sprites?.front_shiny || '';
   finalPokemon.stats.hp = jsonPokemon.stats[0]?.base_stat || 0;
   finalPokemon.stats.attack = jsonPokemon.stats[1]?.base_stat || 0;
   finalPokemon.stats.defense = jsonPokemon.stats[2]?.base_stat || 0;
@@ -76,6 +79,7 @@ function convertToPokemon(jsonPokemon: any) {
   finalPokemon.weight = roundDecimal(
     convertKgsToLbs(unitConvertUp(jsonPokemon.weight))
   );
+  finalPokemon.legacy_cry = jsonPokemon.cries.legacy;
   return finalPokemon;
 }
 

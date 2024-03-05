@@ -1,9 +1,8 @@
 import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
 import { Icon } from './Icons';
-import { IconType } from './IconType';
 import { formatNumber } from '@/helpers/FormatNumber';
-
+import CardHeader from './CardHeader';
 const Card = ({
   id,
   sprite,
@@ -48,20 +47,11 @@ const Card = ({
       border-[12px] border-stone-700 
       flex flex-col shadow-md max-md:max-w-96`}
     >
-      <div
-        className={`w-full font-bold uppercase flex items-end bg-gradient-to-r rounded-tl-full border-gray-700/30 border-x-4 border-y-2 rounded-br-full from-${type} from-60% to-${type}-opaque to-70%  px-2 relative`}
-      >
-        <span className={`text-lg pl-8 flex-1 h-full pr-2`}>{name}</span>
-        <div className={`flex gap-1 items-top pr-2`}>
-          <span className="text-xs self-end">hp</span>
-          <span className="text-2xl">{stats.hp}</span>
-          <div
-            className={`p-1 w-max max-w-5 max-h-5 mt-1 bg-${type} rounded-full flex justify-center items-center`}
-          >
-            {types.includes(type) ? <IconType name={type} /> : <></>}
-          </div>
-        </div>
-      </div>
+      <CardHeader
+        hp={stats.hp}
+        name={name}
+        type={types.includes(type) ? type : null}
+      />
       <div className="flex flex-col">
         <div
           className={`flex w-full justify-center p-4
@@ -80,7 +70,7 @@ const Card = ({
         <div className="w-11/12 mx-auto text-sm gap-4 flex justify-center p-1 border-gray-800 bg-gray-700 border-x-4 border-y-2 rounded-full rounded-tr-[3500px] rounded-bl-[3500px] -mt-8 z-50 relative before:absolute before:content-[''] before:h-full before:w-2 before:top-0 before:bg-gray-200/30 before:animate-shine overflow-hidden before:-left-16">
           <span>NO. {formatNumber(id)}</span>
           <span>HT: {height}&quot;</span>
-          <span>WT: {height} lbs</span>
+          <span>WT: {weight} lbs</span>
         </div>
         <div className=" flex flex-col gap-2 items-center mt-4">
           <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
