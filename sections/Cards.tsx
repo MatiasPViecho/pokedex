@@ -27,6 +27,8 @@ export const Cards = () => {
                 height={card.height}
                 sprite_shiny={card.sprite_shiny}
                 legacy_cry={card.legacy_cry}
+                base_happiness={card.base_happiness}
+                flavor_text={card.flavor_text}
               />
             </li>
           ))}

@@ -12,6 +12,10 @@ const Card = ({
   second_type,
   height,
   weight,
+  base_happiness,
+  flavor_text,
+  legacy_cry,
+  sprite_shiny,
 }: IFinalPokemon) => {
   const types: string[] = [
     'normal',
@@ -72,8 +76,11 @@ const Card = ({
           <span>HT: {height}&quot;</span>
           <span>WT: {weight} lbs</span>
         </div>
-        <div className=" flex flex-col gap-2 items-center mt-4">
-          <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
+        <div
+          className={`mx-auto mt-4 max-w-[38ch] text-[0.75rem] font-semibold text-black`}
+        >
+          {<p>{flavor_text.es}</p> || <p>{flavor_text.en}</p>}
+          {/*   <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
             <li>
               {Icon.Sword}
               <span className="col-start-2">Attack: </span>
@@ -102,7 +109,7 @@ const Card = ({
               <span className="col-start-2">Speed: </span>
               <span className="col-start-3">{stats.speed}</span>
             </li>
-          </ul>
+          </ul>*/}
         </div>
       </div>
     </div>

@@ -1,5 +1,10 @@
 'use server';
-import { IFinalPokemon, IPokemonGroup, IError } from '@/interfaces/interfaces';
+import {
+  IFinalPokemon,
+  IPokemonGroup,
+  IError,
+  IFlavor,
+} from '@/interfaces/interfaces';
 const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';
 const Error = (msg: string, code: number): IError => {
   return { message: msg, code: code, ok: false };
@@ -19,8 +24,11 @@ export const getPokemons = async (gen: number) => {
         async (element: IPokemonGroup) => {
           const newUrl = element.pokemon_species.url.replace('-species', '');
           const jsonPokemon = await getPokemon(newUrl);
+          const jsonPokemonSpecies = await getPokemon(
+            element.pokemon_species.url
+          );
           if (jsonPokemon) {
-            return convertToPokemon(jsonPokemon);
+            return convertToPokemon(jsonPokemon, jsonPokemonSpecies);
           }
         }
       );
@@ -42,7 +50,7 @@ export const getPokemon = async (url: string) => {
   return json;
 };
 
-function convertToPokemon(jsonPokemon: any) {
+function convertToPokemon(jsonPokemon: any, jsonPokemonSpecies: any) {
   const finalPokemon: IFinalPokemon = {
     name: '',
     sprite: '',
@@ -61,6 +69,11 @@ function convertToPokemon(jsonPokemon: any) {
     weight: 0,
     sprite_shiny: '',
     legacy_cry: null,
+    flavor_text: {
+      es: '',
+      en: '',
+    },
+    base_happiness: 0,
   };
   finalPokemon.name = jsonPokemon.name || 'unkown';
   finalPokemon.sprite = jsonPokemon.sprites?.front_default || '';
@@ -80,9 +93,28 @@ function convertToPokemon(jsonPokemon: any) {
     convertKgsToLbs(unitConvertUp(jsonPokemon.weight))
   );
   finalPokemon.legacy_cry = jsonPokemon.cries.legacy;
+  finalPokemon.flavor_text = getTexts(jsonPokemonSpecies.flavor_text_entries);
+  finalPokemon.base_happiness = jsonPokemonSpecies.base_happiness;
   return finalPokemon;
 }
-
+const getTexts = (text_entries: any[]): IFlavor => {
+  const flavor = {
+    es: '',
+    en: '',
+  };
+  text_entries.forEach((entry) => {
+    if (flavor.es !== '' && flavor.en !== '') {
+      return;
+    }
+    if (flavor.es == '' && entry.language.name == 'es') {
+      flavor.es = entry.flavor_text;
+    }
+    if (flavor.en == '' && entry.language.name == 'en') {
+      flavor.en = entry.flavor_text;
+    }
+  });
+  return flavor;
+};
 const unitConvertUp = (unit: number) => {
   return unit / 10;
 };

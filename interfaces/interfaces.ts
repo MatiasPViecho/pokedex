@@ -17,8 +17,14 @@ export interface IFinalPokemon {
   weight: number;
   height: number;
   legacy_cry: string | null;
+  flavor_text: IFlavor;
+  base_happiness: number;
 }
 
+export interface IFlavor {
+  es: string;
+  en: string;
+}
 export interface IPokemonGroup {
   entry_number: number;
   pokemon_species: {
