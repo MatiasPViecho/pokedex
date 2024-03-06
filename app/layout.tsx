@@ -33,9 +33,11 @@ export default function RootLayout({
       >
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
-          <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/3 mx-auto">
-            v: 0.3.2 - in development
-          </span>
+          <div className=" z-[999] absolute w-full flex justify-center overflow-visible top-4 left-0">
+            <span className="p-2 text-stone-900 mx-auto bg-white rounded-xl shadow-md">
+              v: 0.3.3 - in development
+            </span>
+          </div>
         ) : (
           <></>
         )}
