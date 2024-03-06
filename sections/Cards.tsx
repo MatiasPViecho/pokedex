@@ -6,15 +6,15 @@ export const Cards = () => {
   return getPokemons(1).then((e: IFinalPokemon[] | IError) => (
     <Draggable rootClass={''}>
       <ul
-        className={`flex py-8 px-2 gap-4 *:select-none overflow-x-scroll sm:overflow-y-scroll w-full sm:h-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
-         active:cursor-grabbing  cursor-grab sm:py-0 sm:px-6 sm:flex-1 mx-auto
+        className={`flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:h-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
+         active:cursor-grabbing  cursor-grab sm:py-2 sm:px-6 sm:flex-1 mx-auto
         `}
       >
         {Array.isArray(e) &&
           e.map((card: IFinalPokemon) => (
             <li
               key={card.id}
-              className="snap-start snap-always flex-shrink-0 sm:max-w-72 sm:max-h-80 md:max-w-80 md:max-h-96"
+              className="snap-start snap-always flex-shrink-0 sm:max-w-72 sm:max-h-[300px] "
             >
               <Card
                 sprite={card.sprite}

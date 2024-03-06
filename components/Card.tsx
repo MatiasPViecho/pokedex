@@ -39,7 +39,7 @@ const Card = ({
   ];
   return (
     <div
-      className={`box-border backdrop-blur-xl min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-80 sm:max-h-80 sm:max-w-72 sm:min-w-72 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
+      className={`box-border backdrop-blur-xl min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-72 sm:max-h-72 sm:max-w-72 sm:min-w-72 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
         types.includes(type)
           ? `${
               second_type
@@ -63,7 +63,7 @@ const Card = ({
          } rounded-b-md relative overflow-hidden border-4 border-gray-700/30`}
       >
         <img
-          className="w-2/3 h-auto select-none
+          className="w-2/3 sm:w-1/3 h-auto select-none
           "
           src={sprite}
           alt={`${name} pokemon sprite`}
@@ -78,7 +78,7 @@ const Card = ({
       <div
         className={`px-1 w-full pt-4  bg-gradient-to-br from-white/30 from-0% via-white/25 via-10% to-transparent h-full to-40%  `}
       >
-        <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:whitespace-normal sm:line-clamp-2">
+        <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:whitespace-normal sm:line-clamp-3">
           {flavor_text.es || flavor_text.en}
         </span>
 
