@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import './globals.css';
-
+import { RegionMenu } from '@/components/RegionMenu';
+import { FilterMenu } from '@/components/FilterMenu';
+import { MenuUl } from '@/components/Menu';
 const lato = Lato({
   weight: ['400', '700'],
   style: 'normal',
@@ -29,13 +31,25 @@ export default function RootLayout({
         sizes="any"
       ></link>
       <body
-        className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto h-screen`}
+        className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm flex ml-auto h-screen md:grid md:grid-cols-main-layout`}
       >
+        <MenuUl
+          column={false}
+          classes="absolute text-stone-900 z-50 w-full md:w-min gap-4 rounded-sm mx-2 md:mx-0 bottom-16   bg-white md:rounded-none md:static"
+        >
+          <li className="">
+            <RegionMenu />
+          </li>
+          <li>
+            <FilterMenu />
+          </li>
+        </MenuUl>
+
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <div className=" z-[999] absolute w-full flex justify-center overflow-visible top-4 left-0">
             <span className="p-2 text-stone-900 mx-auto bg-white rounded-xl shadow-md">
-              v: 0.3.3 - in development
+              Dev: 0.4.0
             </span>
           </div>
         ) : (
