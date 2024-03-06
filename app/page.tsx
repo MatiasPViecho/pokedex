@@ -2,7 +2,7 @@ import Cards from '@/sections/Cards';
 
 export default function Home() {
   return (
-    <main className="mt-2 relative h-screen">
+    <main className="relative h-screen">
       <ul className="flex flex-col gap-2 px-2 py-2 absolute h-screen">
         <li>
           <h1>Pokedex</h1>
