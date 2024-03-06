@@ -28,7 +28,9 @@ export default function RootLayout({
         href="/pokeball.svg"
         sizes="any"
       ></link>
-      <body className={`${lato.className} bg-stone-900 text-white relative`}>
+      <body
+        className={`${lato.className} bg-stone-900 text-white relative max-h-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto`}
+      >
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/3 mx-auto">
