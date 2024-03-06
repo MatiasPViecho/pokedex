@@ -1,20 +1,21 @@
+import React from 'react';
 import { getPokemons } from '@/app/actions';
 import Card from '@/components/Card';
 import { Draggable } from '@/helpers/Draggable';
 import { IFinalPokemon, IError } from '@/interfaces/interfaces';
-export const Cards = () => {
+const Cards = () => {
   return getPokemons(1).then((e: IFinalPokemon[] | IError) => (
-    <Draggable rootClass={''}>
+    <Draggable rootClass={'h-full'}>
       <ul
-        className={`flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full md:min-w-[768px]
-         active:cursor-grabbing  cursor-grab
+        className={`no-scrollbar h-full flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:h-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
+         active:cursor-grabbing  cursor-grab sm:py-2 sm:px-6 sm:flex-1 mx-auto sm:max-h-max
         `}
       >
         {Array.isArray(e) &&
           e.map((card: IFinalPokemon) => (
             <li
               key={card.id}
-              className="snap-start snap-always flex-shrink-0"
+              className="flex-shrink-0 sm:max-w-72 sm:max-h-[300px]"
             >
               <Card
                 sprite={card.sprite}
@@ -36,3 +37,4 @@ export const Cards = () => {
     </Draggable>
   ));
 };
+export default React.memo(Cards);

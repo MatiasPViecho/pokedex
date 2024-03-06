@@ -29,13 +29,15 @@ export default function RootLayout({
         sizes="any"
       ></link>
       <body
-        className={`${lato.className} bg-stone-900 text-white relative overflow-y-hidden`}
+        className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto h-screen`}
       >
         {children}
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
-          <span className="p-2 z-50 text-white bg-stone-600 rounded-xl absolute -bottom-16 left-1/3 mx-auto">
-            v: 0.3.2 - in development
-          </span>
+          <div className=" z-[999] absolute w-full flex justify-center overflow-visible top-4 left-0">
+            <span className="p-2 text-stone-900 mx-auto bg-white rounded-xl shadow-md">
+              v: 0.3.3 - in development
+            </span>
+          </div>
         ) : (
           <></>
         )}
