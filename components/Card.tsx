@@ -1,8 +1,8 @@
 import React from 'react';
 import { IFinalPokemon } from '@/interfaces/interfaces';
-import { Icon } from './Icons';
 import { formatNumber } from '@/helpers/FormatNumber';
 import CardHeader from './CardHeader';
+import { CardImage } from './CardImage';
 const Card = ({
   id,
   sprite,
@@ -39,7 +39,7 @@ const Card = ({
   ];
   return (
     <div
-      className={`box-border backdrop-blur-xl min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-72 sm:max-h-72 sm:max-w-72 sm:min-w-72 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
+      className={`box-border backdrop-blur-xl min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-[300px] sm:max-h-[300px] sm:max-w-72 sm:min-w-72 rounded-lg bg-gradient-to-br from-${type} via-65% to-90% ${
         types.includes(type)
           ? `${
               second_type
@@ -56,20 +56,12 @@ const Card = ({
         name={name}
         type={types.includes(type) ? type : null}
       />
-      <div
-        className={`flex w-full justify-center p-4
-         ${
-           types.includes(type) ? `bg-${type}` : 'bg-white'
-         } rounded-b-md relative overflow-hidden border-4 border-gray-700/30`}
-      >
-        <img
-          className="w-2/3 sm:w-1/3 h-auto select-none
-          "
-          src={sprite}
-          alt={`${name} pokemon sprite`}
-        />
-        <div className="absolute w-full h-full top-0 bg-gradient-to-b  from-holo-green to-holo-pink to-holo-purple to-holo-blue bg-cover animate-holo blur-xl opacity-35 "></div>
-      </div>
+      <CardImage
+        type={types.includes(type) ? type : null}
+        name={name}
+        sprite={sprite}
+        sprite_shiny={sprite_shiny}
+      />
       <div className="w-11/12 mx-auto text-sm gap-4 flex justify-center p-1 border-gray-800 bg-gray-700 border-x-4 border-y-2 rounded-full rounded-tr-[3500px] rounded-bl-[3500px] -mt-8 z-50 relative before:absolute before:content-[''] before:h-full before:w-2 before:top-0 before:bg-gray-200/30 before:animate-shine overflow-hidden before:-left-16">
         <span>NO. {formatNumber(id)}</span>
         <span>HT: {height}&quot;</span>

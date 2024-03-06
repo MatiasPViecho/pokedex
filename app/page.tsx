@@ -1,9 +1,9 @@
-import { Cards } from '@/sections/Cards';
+import Cards from '@/sections/Cards';
 
 export default function Home() {
   return (
-    <main className="mt-2 relative">
-      <ul className="flex flex-col gap-2 px-2 py-4 absolute">
+    <main className="mt-2 relative h-screen">
+      <ul className="flex flex-col gap-2 px-2 py-2 absolute h-screen">
         <li>
           <h1>Pokedex</h1>
         </li>
