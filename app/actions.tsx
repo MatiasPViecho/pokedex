@@ -1,11 +1,5 @@
 'use server';
-import {
-  IFinalPokemon,
-  IPokemonGroup,
-  IError,
-  IFlavor,
-  InitialPokemon,
-} from '@/interfaces/interfaces';
+import { IFinalPokemon, IError, IFlavor } from '@/interfaces/interfaces';
 const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';
 const Error = (msg: string, code: number): IError => {
   return { message: msg, code: code, ok: false };
@@ -15,9 +9,7 @@ const poundsBase: number = 2.20462;
 export const getPokemons = async (region: number) => {
   try {
     const res = await fetch(
-      `${API_URL}/pokedex/${
-        region >= 9 || region < 1 ? 1 : Number(region) + 1
-      }`,
+      `${API_URL}/pokedex/${region > 9 || region < 1 ? 1 : Number(region) + 1}`,
       {
         next: { revalidate: false },
       }

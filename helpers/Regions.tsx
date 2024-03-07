@@ -37,8 +37,4 @@ export const regions: IRegion[] = [
     name: 'unova (updated)',
     id: 8,
   },
-  {
-    name: 'all regions',
-    id: 9,
-  },
 ];
