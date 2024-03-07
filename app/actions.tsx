@@ -15,7 +15,7 @@ export const getPokemons = async (region: number) => {
   try {
     const res = await fetch(
       `${API_URL}/pokedex/${
-        region > 10 || region < 0 ? 1 : Number(region) + 1
+        region >= 9 || region < 1 ? 1 : Number(region) + 1
       }`,
       {
         cache: 'force-cache',
