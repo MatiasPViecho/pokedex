@@ -1,6 +1,7 @@
 import { MenuUl } from './Menu';
 import { IRegion, regions } from '@/helpers/Regions';
 import { RegionLink } from './RegionLink';
+import Link from 'next/link';
 export const RegionMenu = () => {
   return (
     <MenuUl
