@@ -4,6 +4,7 @@ import {
   IPokemonGroup,
   IError,
   IFlavor,
+  InitialPokemon,
 } from '@/interfaces/interfaces';
 const API_URL: string = process.env.NEXT_PUBLIC_API_URL || '';
 const Error = (msg: string, code: number): IError => {
@@ -23,26 +24,11 @@ export const getPokemons = async (region: number) => {
     );
 
     const json = await res.json();
-    const finalPokemonArray: IFinalPokemon[] = [];
-    if (json.pokemon_entries) {
-      const pokemonPromises = json.pokemon_entries.map(
-        async (element: IPokemonGroup) => {
-          const newUrl = element.pokemon_species.url.replace('-species', '');
-          const jsonPokemon = await getPokemon(newUrl);
-          const jsonPokemonSpecies = await getPokemon(
-            element.pokemon_species.url
-          );
-          if (jsonPokemon) {
-            return convertToPokemon(jsonPokemon, jsonPokemonSpecies);
-          }
-        }
-      );
-      await Promise.all(pokemonPromises).then((pokemonArray) => {
-        finalPokemonArray.push(...pokemonArray.filter((pokemon) => pokemon));
-      });
-      return finalPokemonArray;
+    if (json) {
+      return json.pokemon_entries;
+    } else {
+      return Error('Bad fetch', 400);
     }
-    return Error('Bad fetch', 400);
   } catch (e) {
     console.error(e);
     return Error('An error ocurred', 500);
@@ -57,7 +43,10 @@ export const getPokemon = async (url: string) => {
   return json;
 };
 
-function convertToPokemon(jsonPokemon: any, jsonPokemonSpecies: any) {
+export async function convertToPokemon(species_url: string) {
+  const newUrl = species_url.replace('-species', '');
+  const jsonPokemon = await getPokemon(newUrl);
+  const jsonPokemonSpecies = await getPokemon(species_url);
   const finalPokemon: IFinalPokemon = {
     name: '',
     sprite: '',

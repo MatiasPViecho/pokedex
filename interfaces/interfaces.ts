@@ -6,6 +6,14 @@ export interface IStats {
   specialDefense: number;
   speed: number;
 }
+interface PokemonSpecies {
+  name: string;
+  url: string;
+}
+export interface InitialPokemon {
+  entry_number: number;
+  pokemon_species: PokemonSpecies;
+}
 export interface IFinalPokemon {
   name: string;
   sprite: string;

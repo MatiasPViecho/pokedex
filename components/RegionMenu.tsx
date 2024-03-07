@@ -2,7 +2,10 @@ import { MenuUl } from './Menu';
 import { IRegion, regions } from '@/helpers/Regions';
 import { RegionLink } from './RegionLink';
 import Link from 'next/link';
-export const RegionMenu = () => {
+interface IRegionMenuProps {
+  path: string;
+}
+export const RegionMenu = ({ path }: IRegionMenuProps) => {
   return (
     <MenuUl
       classes="flex w-full md:flex-col md:gap-2 overflow-x-scroll no-scrollbar"
@@ -16,6 +19,7 @@ export const RegionMenu = () => {
           name={region.name}
           id={region.id}
           key={region.id}
+          path={path}
         />
       ))}
     </MenuUl>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { getPokemons } from '@/app/actions';
-import Card from '@/components/Card';
 import { Draggable } from '@/helpers/Draggable';
-import { IFinalPokemon, IError } from '@/interfaces/interfaces';
+import { IError, InitialPokemon } from '@/interfaces/interfaces';
+import LoaderCard from '@/components/LoaderCard';
 interface ICardsProps {
   id: number;
 }
 const Cards = ({ id }: ICardsProps) => {
-  return getPokemons(id).then((e: IFinalPokemon[] | IError) => (
+  return getPokemons(id).then((e: InitialPokemon[] | IError) => (
     <Draggable rootClass={'h-full max-w-full w-full'}>
       <ul
         className={`no-scrollbar h-full flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:h-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
@@ -15,24 +15,14 @@ const Cards = ({ id }: ICardsProps) => {
         `}
       >
         {Array.isArray(e) &&
-          e.map((card: IFinalPokemon) => (
+          e.map((card: InitialPokemon) => (
             <li
-              key={card.id}
+              key={card.entry_number}
               className="flex-shrink-0 sm:max-w-72 sm:max-h-[300px]"
             >
-              <Card
-                sprite={card.sprite}
-                stats={card.stats}
-                name={card.name}
-                id={card.id}
-                type={card.type}
-                second_type={card.second_type}
-                weight={card.weight}
-                height={card.height}
-                sprite_shiny={card.sprite_shiny}
-                legacy_cry={card.legacy_cry}
-                base_happiness={card.base_happiness}
-                flavor_text={card.flavor_text}
+              <LoaderCard
+                entry_number={card.entry_number}
+                pokemon_species={card.pokemon_species}
               />
             </li>
           ))}
