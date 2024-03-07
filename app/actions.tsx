@@ -18,7 +18,7 @@ export const getPokemons = async (region: number) => {
         region >= 9 || region < 1 ? 1 : Number(region) + 1
       }`,
       {
-        cache: 'force-cache',
+        next: { revalidate: false },
       }
     );
 
@@ -50,7 +50,9 @@ export const getPokemons = async (region: number) => {
 };
 
 export const getPokemon = async (url: string) => {
-  const res = await fetch(url, { cache: 'force-cache' });
+  const res = await fetch(url, {
+    next: { revalidate: false },
+  });
   const json = await res.json();
   return json;
 };
