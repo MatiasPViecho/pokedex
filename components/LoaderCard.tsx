@@ -1,5 +1,5 @@
 import { convertToPokemon } from '@/app/actions';
-import { InitialPokemon } from '@/interfaces/interfaces';
+import { IFinalPokemon, InitialPokemon } from '@/interfaces/interfaces';
 import Card from './Card';
 import { Suspense } from 'react';
 
@@ -10,23 +10,46 @@ export default async function LoaderCard({
   entry_number,
   pokemon_species,
 }: InitialPokemon) {
-  const pokemon = await convertToPokemon(pokemon_species.url);
-  return (
-    <Suspense fallback={<CardSkeleton />}>
-      <Card
-        sprite={pokemon.sprite}
-        stats={pokemon.stats}
-        name={pokemon.name}
-        id={pokemon.id}
-        type={pokemon.type}
-        second_type={pokemon.second_type}
-        weight={pokemon.weight}
-        height={pokemon.height}
-        sprite_shiny={pokemon.sprite_shiny}
-        legacy_cry={pokemon.legacy_cry}
-        base_happiness={pokemon.base_happiness}
-        flavor_text={pokemon.flavor_text}
-      />
-    </Suspense>
+  const pokemonPromise: Promise<IFinalPokemon> = new Promise(
+    (resolve, reject) => {
+      convertToPokemon(pokemon_species.url)
+        .then((response) => {
+          if (!response) {
+            reject(new Error('Ocurrió un error'));
+          }
+          return response;
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    }
   );
+  return pokemonPromise
+    .then((pokemon) => {
+      return (
+        <Suspense fallback={<CardSkeleton />}>
+          <Card
+            sprite={pokemon.sprite}
+            stats={pokemon.stats}
+            name={pokemon.name}
+            id={pokemon.id}
+            type={pokemon.type}
+            second_type={pokemon.second_type}
+            weight={pokemon.weight}
+            height={pokemon.height}
+            sprite_shiny={pokemon.sprite_shiny}
+            legacy_cry={pokemon.legacy_cry}
+            base_happiness={pokemon.base_happiness}
+            flavor_text={pokemon.flavor_text}
+          />
+        </Suspense>
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+      return <CardSkeleton />;
+    });
 }
