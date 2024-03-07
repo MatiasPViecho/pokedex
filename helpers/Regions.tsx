@@ -1,4 +1,4 @@
-interface IRegion {
+export interface IRegion {
   name: string;
   id: number;
 }
@@ -6,39 +6,39 @@ interface IRegion {
 export const regions: IRegion[] = [
   {
     name: 'kanto',
-    id: 2,
+    id: 1,
   },
   {
     name: 'johto',
-    id: 3,
+    id: 2,
   },
 
   {
     name: 'hoenn',
-    id: 4,
+    id: 3,
   },
   {
     name: 'sinnoh (original)',
-    id: 5,
+    id: 4,
   },
   {
     name: 'sinnoh (extended)',
-    id: 6,
+    id: 5,
   },
   {
     name: 'johto (updated)',
-    id: 7,
+    id: 6,
   },
   {
     name: 'unova (original)',
-    id: 8,
+    id: 7,
   },
   {
     name: 'unova (updated)',
-    id: 9,
+    id: 8,
   },
   {
     name: 'all regions',
-    id: 10,
+    id: 9,
   },
 ];

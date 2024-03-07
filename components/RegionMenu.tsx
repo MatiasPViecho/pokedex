@@ -1,27 +1,22 @@
-import { Draggable } from '@/helpers/Draggable';
 import { MenuUl } from './Menu';
-
+import { IRegion, regions } from '@/helpers/Regions';
+import { RegionLink } from './RegionLink';
 export const RegionMenu = () => {
   return (
-    <Draggable rootClass={'bg-white w-full rounded-sm flex'}>
-      <MenuUl
-        classes="flex w-full"
-        column={false}
-      >
-        <li className="flex-shrink">
-          <h1>Pokedex</h1>
-        </li>
-        <li>
-          <a
-            href="https://github.com/MatiasPViecho/pokedex"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-          >
-            Github
-          </a>
-        </li>
-        <li>Regions</li>
-      </MenuUl>
-    </Draggable>
+    <MenuUl
+      classes="flex w-full md:flex-col md:gap-2 overflow-x-scroll no-scrollbar"
+      column={false}
+    >
+      <li className="hidden md:block md:text-base text-white uppercase pb-1">
+        Pokedex Region Picker
+      </li>
+      {regions.map((region: IRegion) => (
+        <RegionLink
+          name={region.name}
+          id={region.id}
+          key={region.id}
+        />
+      ))}
+    </MenuUl>
   );
 };
