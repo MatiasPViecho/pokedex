@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'main-layout': '10% 90%',
+        'main-layout': '5fr 6fr',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
