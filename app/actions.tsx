@@ -11,11 +11,16 @@ const Error = (msg: string, code: number): IError => {
 };
 const footBase: number = 3.28084;
 const poundsBase: number = 2.20462;
-export const getPokemons = async (gen: number) => {
+export const getPokemons = async (region: number) => {
   try {
-    const res = await fetch(`${API_URL}/pokedex/${gen + 1}`, {
-      cache: 'force-cache',
-    });
+    const res = await fetch(
+      `${API_URL}/pokedex/${
+        region > 10 || region < 0 ? 1 : Number(region) + 1
+      }`,
+      {
+        cache: 'force-cache',
+      }
+    );
 
     const json = await res.json();
     const finalPokemonArray: IFinalPokemon[] = [];
