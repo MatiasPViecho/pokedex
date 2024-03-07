@@ -1,7 +1,7 @@
 'use client';
 import { ReactElement, useRef, useState, MouseEvent } from 'react';
 interface DraggableProps {
-  rootClass: string | undefined | null;
+  rootClass?: string | undefined | null;
   children: ReactElement;
 }
 export const Draggable = ({ rootClass = '', children }: DraggableProps) => {

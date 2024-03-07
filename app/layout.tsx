@@ -33,14 +33,11 @@ export default function RootLayout({
       <body
         className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm flex ml-auto h-screen md:grid md:grid-cols-main-layout`}
       >
-        <MenuUl
-          column={false}
-          classes="absolute text-stone-900 z-50 w-full md:w-min gap-4 rounded-sm mx-2 md:mx-0 bottom-16   bg-white md:rounded-none md:static"
-        >
-          <li className="">
+        <MenuUl classes="absolute text-stone-900 z-50 w-full md:w-min gap-4 bottom-16 md:rounded-none md:static">
+          <li className="mx-2 md:mx-0">
             <RegionMenu />
           </li>
-          <li>
+          <li className="mx-2 md:mx-0">
             <FilterMenu />
           </li>
         </MenuUl>
@@ -49,7 +46,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <div className=" z-[999] absolute w-full flex justify-center overflow-visible top-4 left-0">
             <span className="p-2 text-stone-900 mx-auto bg-white rounded-xl shadow-md">
-              Dev: 0.4.0
+              Dev: 0.4.1
             </span>
           </div>
         ) : (
