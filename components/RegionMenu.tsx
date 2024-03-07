@@ -17,6 +17,7 @@ export const RegionMenu = ({ path }: IRegionMenuProps) => {
       {regions.map((region: IRegion) => (
         <RegionLink
           name={region.name}
+          href={region.href}
           id={region.id}
           key={region.id}
           path={path}
