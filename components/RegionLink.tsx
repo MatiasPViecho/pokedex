@@ -1,9 +1,10 @@
-'use client';
-import { IRegion } from '@/helpers/Regions';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-export const RegionLink = ({ name, id }: IRegion) => {
-  const path = usePathname();
+interface IRegionProps {
+  name: string;
+  id: number;
+  path: string;
+}
+export const RegionLink = ({ name, id, path }: IRegionProps) => {
   const noChildPath = path === '/';
   const pathWithouthSlash: string = path && path.replace('/', '');
   return (
@@ -17,6 +18,7 @@ export const RegionLink = ({ name, id }: IRegion) => {
       <Link
         className="pointer-events-auto w-full z-50 block"
         href={`${id}`}
+        prefetch={false}
       >
         {name}
       </Link>

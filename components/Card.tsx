@@ -73,37 +73,6 @@ const Card = ({
         <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:whitespace-normal sm:line-clamp-3">
           {flavor_text.es || flavor_text.en}
         </span>
-
-        {/*   <ul className="grid grid-cols-2 gap-2 *:grid *:justify-end *:items-center *:gap-4 *:grid-cols-[16px_minmax(0px,_2fr)_24px] *:max-w-56">
-            <li>
-              {Icon.Sword}
-              <span className="col-start-2">Attack: </span>
-              <span className="col-start-3">{stats.attack}</span>
-            </li>
-            <li>
-              {Icon.Shield}
-              <span className="col-start-2">Defense: </span>
-              <span className="col-start-3">{stats.defense}</span>
-            </li>
-            <li>
-              <span className="col-start-2">Sp. Atk: </span>
-              <span className="col-start-3">{stats.specialAttack}</span>
-            </li>
-            <li>
-              <span className="col-start-2">Sp. Def: </span>
-              <span className="col-start-3">{stats.specialDefense}</span>
-            </li>
-            <li>
-              {Icon.Heart}
-              <span className="col-start-2">HP: </span>
-              <span className="col-start-3">{stats.hp}</span>
-            </li>
-            <li>
-              {Icon.Boot}
-              <span className="col-start-2">Speed: </span>
-              <span className="col-start-3">{stats.speed}</span>
-            </li>
-          </ul>*/}
       </div>
     </div>
   );
