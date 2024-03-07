@@ -5,6 +5,7 @@ import { RegionMenu } from '@/components/RegionMenu';
 import { FilterMenu } from '@/components/FilterMenu';
 import { MenuUl } from '@/components/Menu';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 const lato = Lato({
   weight: ['400', '700'],
   style: 'normal',
@@ -36,8 +37,7 @@ export default function RootLayout({
             <FilterMenu />
           </li>
         </MenuUl>
-
-        {children}
+        <Suspense>{children}</Suspense>
         {process.env.NEXT_PUBLIC_DEV_MODE === 'TRUE' ? (
           <div className=" z-[999] absolute w-full flex justify-center overflow-visible top-4 left-0">
             <span className="p-2 text-stone-900 mx-auto bg-white rounded-xl shadow-md">
