@@ -4,12 +4,11 @@ import Card from './Card';
 import { Suspense } from 'react';
 
 const CardSkeleton = () => (
-  <div className="min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-[300px] sm:max-h-[300px] sm:max-w-72 sm:min-w-72 rounded-lg border-stone-800 animate-pulse max-md:max-w-96"></div>
+  <li className="flex-shrink-0 sm:max-w-72 sm:max-h-[300px]">
+    <div className="min-h-96 max-h-96 max-w-80 min-w-80 sm:min-h-[300px] sm:max-h-[300px] sm:max-w-72 sm:min-w-72 rounded-lg border-stone-800 animate-pulse max-md:max-w-96"></div>
+  </li>
 );
-export default async function LoaderCard({
-  entry_number,
-  pokemon_species,
-}: InitialPokemon) {
+export default async function LoaderCard({ pokemon_species }: InitialPokemon) {
   const pokemonPromise: Promise<IFinalPokemon> = new Promise(
     (resolve, reject) => {
       convertToPokemon(pokemon_species.url)
