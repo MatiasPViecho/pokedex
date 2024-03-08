@@ -9,9 +9,9 @@ interface ICardsProps {
 export async function Cards({ id }: ICardsProps) {
   const cards: InitialPokemon[] | IError = await getPokemons(id);
   return (
-    <Draggable rootClass={'h-full max-w-full w-full'}>
+    <Draggable rootClass={'max-w-full w-full'}>
       <ul
-        className={`no-scrollbar justify-start h-full flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:h-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
+        className={`no-scrollbar justify-start flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:grid sm:grid-flow-col sm:grid-rows-2 md:grid-rows-3
           active:cursor-grabbing  cursor-grab sm:py-2 sm:px-6 sm:flex-1 mx-auto sm:max-h-max
           `}
       >
