@@ -1,17 +1,22 @@
 import { ChangeEvent } from 'react';
 import { MenuUl } from './Menu';
 import { create } from 'zustand';
-
+import { typeEnum, types } from '@/helpers/Types';
+import { IconType } from './IconType';
 interface FilterState {
   name: string;
+  type: typeEnum | null;
   change: (by: string) => void;
+  changeType: (by: typeEnum) => void;
 }
 export const useFilterStore = create<FilterState>((set) => ({
   name: '',
-  change: (by) => set((state) => ({ name: by })),
+  type: null,
+  change: (by: string) => set((state) => ({ name: by })),
+  changeType: (newType: typeEnum) => set((state) => ({ type: newType })),
 }));
 export const FilterMenu = () => {
-  const { name, change } = useFilterStore();
+  const { name, type, change, changeType } = useFilterStore();
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     if (name.length > 20 && name.length < value.length) {
@@ -25,10 +30,20 @@ export const FilterMenu = () => {
   };
   return (
     <MenuUl classes="bg-white w-full rounded-sm">
-      <input
-        value={name}
-        onChange={(e) => handleInputChange(e)}
-      />
+      <li>
+        <input
+          value={name}
+          onChange={(e) => handleInputChange(e)}
+        />
+      </li>
+      {types.map((type, index) => (
+        <li
+          key={index}
+          className=""
+        >
+          <IconType name={type} />
+        </li>
+      ))}
       {name}
     </MenuUl>
   );

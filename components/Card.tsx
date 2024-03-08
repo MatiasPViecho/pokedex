@@ -5,6 +5,7 @@ import { formatNumber } from '@/helpers/FormatNumber';
 import CardHeader from './CardHeader';
 import { CardImage } from './CardImage';
 import { useFilterStore } from './FilterMenu';
+import { types } from '@/helpers/Types';
 const Card = ({
   id,
   sprite,
@@ -25,26 +26,7 @@ const Card = ({
   const noShow = !name
     .toLocaleLowerCase()
     .includes(filteredName.toLocaleLowerCase());
-  const types: string[] = [
-    'normal',
-    'fire',
-    'water',
-    'electric',
-    'grass',
-    'ice',
-    'fighting',
-    'poison',
-    'ground',
-    'flying',
-    'psychic',
-    'bug',
-    'rock',
-    'ghost',
-    'dragon',
-    'dark',
-    'steel',
-    'fairy',
-  ];
+
   return (
     <li
       className={`flex-shrink-0 sm:max-w-72 sm:max-h-[300px] ${
