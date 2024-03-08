@@ -56,7 +56,10 @@ export const FilterMenu = () => {
                 : 'grayscale-[75%] hover:grayscale-[25%]'
             } w-max`}
           >
-            <button onClick={() => handleTypeChange(typeItem)}>
+            <button
+              aria-label={`Filter by ${typeItem} pokemons`}
+              onClick={() => handleTypeChange(typeItem)}
+            >
               <IconType name={typeItem} />
             </button>
           </li>
