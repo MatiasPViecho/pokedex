@@ -20,12 +20,10 @@ const Card = ({
   legacy_cry,
   sprite_shiny,
 }: IFinalPokemon) => {
-  const { name: filteredName } = useFilterStore();
+  const { name: filteredName, type: filteredType } = useFilterStore();
   // if (!name.toLocaleLowerCase().includes(filteredName.toLocaleLowerCase()))
   //   return <></>;
-  const noShow = !name
-    .toLocaleLowerCase()
-    .includes(filteredName.toLocaleLowerCase());
+  const noShow = filterCheck();
 
   return (
     <li
@@ -72,6 +70,13 @@ const Card = ({
       </div>
     </li>
   );
+
+  function filterCheck() {
+    return !filteredType
+      ? !name.toLocaleLowerCase().includes(filteredName.toLocaleLowerCase())
+      : !name.toLocaleLowerCase().includes(filteredName.toLocaleLowerCase()) ||
+          type.toLocaleLowerCase() !== filteredType?.toLocaleLowerCase();
+  }
 };
 
 export default React.memo(Card);

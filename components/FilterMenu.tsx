@@ -5,15 +5,15 @@ import { typeEnum, types } from '@/helpers/Types';
 import { IconType } from './IconType';
 interface FilterState {
   name: string;
-  type: typeEnum | null;
+  type: string | null;
   change: (by: string) => void;
-  changeType: (by: typeEnum) => void;
+  changeType: (by: string | null) => void;
 }
 export const useFilterStore = create<FilterState>((set) => ({
   name: '',
   type: null,
   change: (by: string) => set((state) => ({ name: by })),
-  changeType: (newType: typeEnum) => set((state) => ({ type: newType })),
+  changeType: (newType: string | null) => set((state) => ({ type: newType })),
 }));
 export const FilterMenu = () => {
   const { name, type, change, changeType } = useFilterStore();
@@ -28,6 +28,13 @@ export const FilterMenu = () => {
       change(e.target.value);
     }
   };
+  const handleTypeChange = (e: string) => {
+    if (e === type) {
+      changeType(null);
+    } else {
+      changeType(e);
+    }
+  };
   return (
     <MenuUl classes="bg-white w-full rounded-sm">
       <li>
@@ -36,12 +43,14 @@ export const FilterMenu = () => {
           onChange={(e) => handleInputChange(e)}
         />
       </li>
-      {types.map((type, index) => (
+      {types.map((typeItem, index) => (
         <li
           key={index}
-          className=""
+          className={`${type === typeItem ? '' : 'grayscale'}`}
         >
-          <IconType name={type} />
+          <button onClick={() => handleTypeChange(typeItem)}>
+            <IconType name={typeItem} />
+          </button>
         </li>
       ))}
       {name}
