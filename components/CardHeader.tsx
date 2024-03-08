@@ -14,7 +14,7 @@ const CardHeader = ({ hp, name, type }: ICardHeader) => (
       <span className="text-xs self-end">hp</span>
       <span className="text-2xl">{hp}</span>
       <div
-        className={`p-1 w-max max-w-5 max-h-5 mt-1 bg-${type} rounded-full flex justify-center items-center`}
+        className={`p-1 w-max max-w-5 max-h-5 mt-1 bg-${type} rounded-full flex justify-center items-center *:*:fill-white`}
       >
         {type ? <IconType name={type} /> : <></>}
       </div>

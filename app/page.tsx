@@ -1,4 +1,4 @@
-import Cards from '@/sections/Cards';
+import { Cards } from '@/sections/Cards';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     icon: '/public/pokeball.svg',
   },
 };
-export default function Home() {
+
+export default function Page() {
   return <Cards id={1} />;
 }
