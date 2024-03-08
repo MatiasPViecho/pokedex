@@ -8,7 +8,6 @@ export const types: string[] = [
   'fighting',
   'poison',
   'ground',
-  'flying',
   'psychic',
   'bug',
   'rock',
@@ -17,6 +16,7 @@ export const types: string[] = [
   'dark',
   'steel',
   'fairy',
+  'flying',
 ];
 
 export enum typeEnum {

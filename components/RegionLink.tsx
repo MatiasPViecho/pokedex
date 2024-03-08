@@ -15,7 +15,7 @@ export const RegionLink = ({ name, id, path, href }: IRegionProps) => {
           (noChildPath && id === 1) || path == href.toString()
             ? 'bg-stone-700 text-white border-white'
             : 'bg-white border-white'
-        }`}
+        } shadow-sm`}
         href={`${href}`}
         prefetch={false}
       >

@@ -36,24 +36,32 @@ export const FilterMenu = () => {
     }
   };
   return (
-    <MenuUl classes="bg-white w-full rounded-sm">
-      <li>
-        <input
-          value={name}
-          onChange={(e) => handleInputChange(e)}
-        />
-      </li>
-      {types.map((typeItem, index) => (
-        <li
-          key={index}
-          className={`${type === typeItem ? '' : 'grayscale'}`}
-        >
-          <button onClick={() => handleTypeChange(typeItem)}>
-            <IconType name={typeItem} />
-          </button>
-        </li>
-      ))}
-      {name}
-    </MenuUl>
+    <div className="flex flex-col gap-4 md:align-center">
+      <input
+        className="bg-white rounded-sm px-2 mr-auto py-3 text-black shadow-sm"
+        placeholder="Search Pokemon..."
+        value={name}
+        onChange={(e) => handleInputChange(e)}
+      />
+      <MenuUl
+        classes="rounded-sm w-full overflow-x-scroll no-scrollbar md:grid md:grid-cols-3  gap-1 md:gap-2"
+        column={false}
+      >
+        {types.map((typeItem, index) => (
+          <li
+            key={index}
+            className={`transition-all ${
+              type === typeItem
+                ? 'grayscale-0 hover:grayscale-0'
+                : 'grayscale-[75%] hover:grayscale-[25%]'
+            } w-max`}
+          >
+            <button onClick={() => handleTypeChange(typeItem)}>
+              <IconType name={typeItem} />
+            </button>
+          </li>
+        ))}
+      </MenuUl>
+    </div>
   );
 };

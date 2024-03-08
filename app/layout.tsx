@@ -27,13 +27,13 @@ export default function RootLayout({
         sizes="any"
       ></link>
       <body
-        className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm flex ml-auto h-screen md:grid md:grid-cols-main-layout`}
+        className={`${lato.className} no-scrollbar bg-stone-900 text-white relative max-h-screen-sm flex ml-auto h-screen md:grid md:grid-cols-main-layout `}
       >
-        <MenuUl classes="absolute text-stone-900 z-50 w-full md:w-min gap-4 bottom-16 md:rounded-none md:static">
-          <li className="mx-2 md:mx-0">
+        <MenuUl classes="absolute text-stone-900 z-50 w-full md:bg-water gap-4 bottom-4 md:rounded-none md:static">
+          <li className="md:mx-auto md:w-full md:max-w-64 bg-stone-100 rounded-lg p-4 shadow-sm">
             <RegionMenu path={path} />
           </li>
-          <li className="mx-2 md:mx-0">
+          <li className="md:mx-auto md:w-full md:max-w-64 bg-stone-100 rounded-lg p-4 shadow-sm">
             <FilterMenu />
           </li>
         </MenuUl>

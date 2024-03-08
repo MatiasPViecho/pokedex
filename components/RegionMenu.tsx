@@ -10,8 +10,8 @@ export const RegionMenu = ({ path }: IRegionMenuProps) => {
       classes="flex w-full md:flex-col md:gap-2 overflow-x-scroll no-scrollbar"
       column={false}
     >
-      <li className="hidden md:block md:text-base text-white uppercase pb-1">
-        Pokedex Region Picker
+      <li className="hidden md:block md:text-base text-black uppercase pb-1">
+        Choose Region:
       </li>
       {regions.map((region: IRegion) => (
         <RegionLink
