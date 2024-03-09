@@ -63,7 +63,7 @@ const Card = ({
         <div
           className={`px-1 w-full pt-4  bg-gradient-to-br from-white/30 from-0% via-white/25 via-10% to-transparent h-full to-40%  `}
         >
-          <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:whitespace-normal sm:line-clamp-3">
+          <span className="max-w-[38ch] whitespace-break-spaces tracking-wide text-black italic text-balance text-[0.75rem] sm:line-clamp-3">
             {flavor_text.en || flavor_text.es}
           </span>
         </div>

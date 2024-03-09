@@ -13,7 +13,7 @@ export async function Cards({ id }: ICardsProps) {
       <ul
         className={`no-scrollbar justify-start flex py-8 px-2 gap-4 *:select-none overflow-x-scroll w-full sm:grid sm:grid-flow-col md:grid-rows-3
           active:cursor-grabbing  cursor-grab sm:py-2 sm:px-6 sm:flex-1 mx-auto sm:max-h-max
-          `}
+          md:pl-[20%] `}
       >
         {Array.isArray(cards) &&
           cards.map((card: InitialPokemon) => (
